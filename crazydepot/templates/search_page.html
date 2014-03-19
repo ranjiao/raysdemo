@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<table width="800" border="0" align="center">
+	<tr><th colspan="3">Search result {{ search_title }}</th></tr>
+	<tr><th>Name</th><th>Author</th><th>Creation Time</th><th>Current Version</th></tr>
+	{% for page in pages %}
+		<tr>
+			<th>{{ page.name }}</th>
+			<th>{{ page.creator }}</th>
+			<th>{{ page.creation_date }}</th>
+			<th>{{ page.latest_version }}</th>
+		</tr>
+	{% endfor %}
+</table>
+
+{% endblock %}

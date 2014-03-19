@@ -1,0 +1,118 @@
+#page {
+	position: relative;
+	width: 1024px; 
+	margin-left: auto; 
+	margin-right: auto;
+}
+
+#header .top {
+  height: 33px;
+
+}
+
+#header .top .title {
+  position: absolute;
+  top: 5px;
+  left: 6px;
+}
+
+#header .top .title img {
+  width: 211px;
+  height: 26px;
+  border: 0;
+}
+
+#header .top .login {
+	position: relative;
+	float: right;
+}
+
+#header .top .login .nickname {
+  font-weight: bold;
+}
+
+#header .bottom {
+  clear: both;
+  background-color: #c3d9ff;
+  padding: 3px;
+  padding-left: 5px;
+  padding-right: 7px;
+}
+
+#header .bottom .attribution {
+	float: right;
+	padding-top: 3px;
+	padding-right: 4px;
+}
+
+#header .bottom .buttons .item {
+	margin-right: 4px;
+}
+
+#body {
+	position:relative;
+	padding-top: 5px;
+}
+
+#sidebar {
+	border: 1px solid #aaaaaa;
+	width:160px;
+	float:left;
+	background-color:#c3d9ff;
+	padding: 9px;
+	margin: 7px;
+	margin-top: 0px;
+}
+
+#nav li{
+	width: 150px;
+	font-size: 8pt;
+	float:left;
+	margin:2px;
+	margin-left:12px;
+	
+	text-align:left;
+}
+#nav li a{
+	text-decoration:none;
+	display:block;
+}
+
+#sidebar .textInput {
+	border:1px solid #58805f;
+	font-size:12px;
+}
+
+#sidebar .buttons{
+	height: 20px;
+	width: 48px;
+	font-size: 9pt;
+	padding-top: 0px;
+	margin-top: 0px;
+}
+
+#content {
+	display:block;
+	float:left;
+	width:820px;
+	padding-left: 0px;	
+}
+
+#footer {
+	clear:both;
+	padding: 3px;
+	padding-left: 15px;
+	padding-right: 7px;
+}
+
+a.button, input[type^="submit"], input[type^="button"] {
+  margin: 0;
+  padding: 2px 5px 2px 5px;
+  font-family: Arial, Sans-serif;
+  font-size: 12px;
+  text-decoration: none;
+  color: #222;
+  cursor: default;
+  background: #ddd url("/static/images/button-background.gif") repeat-x 0 0;
+  border: 1px solid #aaa;
+}

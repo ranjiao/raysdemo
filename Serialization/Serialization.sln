@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Serialization", "Serialization.vcproj", "{C64D7340-FF71-4CCD-9AF5-B2985DB65547}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTest", "test\UnitTest\UnitTest.vcproj", "{998D4CB6-64EA-4B99-A8EF-673C84B41299}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C64D7340-FF71-4CCD-9AF5-B2985DB65547}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C64D7340-FF71-4CCD-9AF5-B2985DB65547}.Debug|Win32.Build.0 = Debug|Win32
+		{C64D7340-FF71-4CCD-9AF5-B2985DB65547}.Release|Win32.ActiveCfg = Release|Win32
+		{C64D7340-FF71-4CCD-9AF5-B2985DB65547}.Release|Win32.Build.0 = Release|Win32
+		{998D4CB6-64EA-4B99-A8EF-673C84B41299}.Debug|Win32.ActiveCfg = Debug|Win32
+		{998D4CB6-64EA-4B99-A8EF-673C84B41299}.Debug|Win32.Build.0 = Debug|Win32
+		{998D4CB6-64EA-4B99-A8EF-673C84B41299}.Release|Win32.ActiveCfg = Release|Win32
+		{998D4CB6-64EA-4B99-A8EF-673C84B41299}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

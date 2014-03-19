@@ -1,0 +1,13 @@
+A simple wiki system based on Google App Engine
+
+== Features
+ * Wiki syntax
+ * Reversion
+
+== What's next?
+ * Ajax UI
+ * Improve the management of wiki user
+ * Provide a control center to configure this wiki
+
+== Contact me 
+You can just email me: ranjiao@gmail.com

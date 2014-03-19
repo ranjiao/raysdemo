@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{% block title %}{{ application_name }}{% endblock %}</title>
+    <link href="/static/css/base.css" rel="stylesheet" type="text/css" />
+	<link href="/static/css/chrome.css" rel="stylesheet" type="text/css" />
+	<link type="text/css" href="/static/css/themes/base/ui.all.css" rel="stylesheet" />
+	<script type="text/javascript" src="/static/js/jquery-1.3.2.js"></script>
+	<script type="text/javascript" src="/static/js/ui/ui.core.js"></script>
+	<script type="text/javascript" src="/static/js/ui/ui.draggable.js"></script>
+	<script type="text/javascript" src="/static/js/ui/ui.resizable.js"></script>
+	<script type="text/javascript" src="/static/js/ui/ui.tabs.js"></script>
+	<script type="text/javascript" src="/static/js/ui/ui.dialog.js"></script>
+	<script type="text/javascript" src="/static/js/ui/effects.core.js"></script>
+	<script type="text/javascript" src="/static/js/ui/effects.highlight.js"></script>
+	<script type="text/javascript" src="/static/js/external/bgiframe/jquery.bgiframe.js"></script>
+
+	<link type="text/css" href="/static/css/demos.css" rel="stylesheet" />
+	<script type="text/javascript">
+
+	$(function() {
+		$("#tabs").tabs();
+	});
+	
+	$(function(){
+		var page_name = $("#page_name"),
+			page_tags = $("#page_tags"),
+			tips = $("#validateTips");
+			
+		function updateTips(t) {
+			tips.text(t).effect("highlight",{},2500);
+		}
+		
+		function checkLength(o,n,min,max) {
+			if ( o.val().length > max || o.val().length < min ) {
+				o.addClass('ui-state-error');
+				updateTips("Length of " + n + " must be between "+min+" and "+max+".");
+				return false;
+			} else {
+				return true;
+			}
+		}
+
+		function checkLength(o,n,min,max) {
+			if ( o.val().length > max || o.val().length < min ) {
+				o.addClass('ui-state-error');
+				updateTips("Length of " + n + " must be between "+min+" and "+max+".");
+				return false;
+			} else {
+				return true;
+			}
+		}
+
+		function checkRegexp(o,regexp,n) {
+			if ( !( regexp.test( o.val() ) ) ) {
+				o.addClass('ui-state-error');
+				updateTips(n);
+				return false;
+			} else {
+				return true;
+			}
+		}	
+
+		$("#new_page_dlg").dialog({
+			bgiframe: true,
+			width: 230,
+			modal: true,
+			autoOpen: false,
+			buttons: {
+				'Create': function() {
+					var bValid = true;
+	
+					bValid = bValid && checkLength(page_name,"page_name",2,35);
+					bValid = bValid && checkRegexp(page_name,/^[a-z]([0-9a-z_])+$/i,"Page name may consist of a-z, 0-9, underscores, begin with a letter.");
+					if (!page_tags.empty())
+						bValid = bValid && checkRegexp(page_tags,/^[a-z]([0-9a-z_])+$/i,"Tags should consist of a-z, 0-9, underscores, begin with a letter.");
+						
+					if (bValid) {
+						$(this).dialog('close');
+						self.location = '/pages/' + page_name.val() + '?mode=edit';						
+					}
+				},
+				Cancel: function() {
+					$(this).dialog('close');
+				}
+			},
+			close: function() {
+				
+			}
+
+		});
+		
+		$('#create_page').click(function() {
+			$('#new_page_dlg').dialog('open');
+		})
+	})
+	
+    </script>
+	{% block head %} {% endblock %}
+</head>
+
+<body>	
+
+<div id="new_page_dlg" title="Create new page">
+	<p id="validateTips">Please enter the page name.</p>
+	
+	<form>
+	<fieldset>
+		<label for="name">Page name</label><br/>
+		<input type="text" name="page_name" id="page_name" class="text ui-widget-content ui-corner-all" /><br/><br/>
+		<label for="email">Tags</label><br/>
+		<input type="text" name="page_tags" id="page_tags" value="" class="text ui-widget-content ui-corner-all" /><br/>
+	</fieldset>
+	</form>
+
+</div>
+
+<div id= "page">
+	<div id="header" >
+		<div class="top" >
+			<div class="title">
+				<a href="/"><img src="/static/images/logo.png" alt="Wiki Logo" /></a>
+			</div>
+			<div class="login">
+				{% if user %}
+				<span class="item nickname">{{ user.nickname }}</span> |
+				<span class="item"><a href="{{ logout_url|escape }}">Sign out</a></span>
+				{% else %}
+				<span class="item"><a href="{{ login_url|escape }}">Sign in</a></span>
+				{% endif %}
+			</div>
+		</div>
+		<div class="bottom ui-corner-all ui-widget-header">
+	        <div class="buttons">
+	        	<span class="item">
+	        		<input type="button" value="New Page" id='create_page' class='ui-corner-all' />
+				</span>
+				{% block buttons %}
+				{% endblock %}		 
+			</div>
+		</div>
+	</div>
+	
+	<div id="body">
+	    <div id="sidebar" class='ui-corner-all'>
+
+			<div>
+			<ul id="nav">
+	    		<li><a href="/pages/">Home</a></li>
+				<li><a href="/search/user/">Users</a></li>
+		    	<li>
+					<form action="/search/" method="get">
+						<input class="textInput" name="name" type="text" size="12" value=""/>
+						<input type="submit" value="Search" class="buttons"/>
+					</form>
+				</li>
+		    	{% block sidebar %}{% endblock %}
+			</ul>
+			</div>
+	    </div>
+		
+	    <div id="content">
+			<div id="tabs">
+			<ul>
+			{% block content_tab_head %}
+			<li><a href="#tabs-1">Content</a></li>
+			{% endblock %}	
+			</ul>
+			
+			<div id="tabs-1">
+				{% block body %}{% endblock %}
+			</div>
+				{% block content_tab_others %}
+				{% endblock %}
+			</div>	    	
+			
+		</div>
+	</div>
+	
+	<div id="footer">
+		{{ footer }}
+	</div>
+	
+</div>
+</body>
+
+</html>

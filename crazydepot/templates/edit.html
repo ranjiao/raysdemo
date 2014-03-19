@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}{{ application_name }} - {{ page.name|escape }} - Edit{% endblock %}
+
+{% block head %}
+	
+	<!-- markItUp! -->
+	<script type="text/javascript" src="/static/js/editor/markitup/jquery.markitup.js"></script>
+	<!-- markItUp! toolbar settings -->
+	<script type="text/javascript" src="/static/js/editor/markitup/sets/wiki/set.js"></script>
+	<!-- markItUp! skin -->
+	
+	<link rel="stylesheet" type="text/css" href="/static/js/editor/markitup/skins/markitup/style.css" />
+	<!--  markItUp! toolbar skin -->
+	<link rel="stylesheet" type="text/css" href="/static/js/editor/markitup/sets/wiki/style.css" />
+
+	<script type="text/javascript" >
+	   $(document).ready(function() {
+	      $("#wikicontent").markItUp(mySettings);
+	   });
+	</script>
+
+{% endblock %}
+
+{% block content_tab_head %}
+	<li><a href="#tabs-1">Edit Page</a></li>
+{% endblock %}	
+
+{% block body %}
+	{{ before_edit_form }}
+	<form action="{{ edit_url|escape }}" method="post">
+		<div><textarea rows="10" cols="90" name="wikicontent" id="wikicontent">{{ source }}</textarea></div>
+		<div class="buttons">
+		  <span class="item"><input style="font-weight: bold" type="submit" class='ui-corner-all' value="Save Changes"/></span>
+		  <span class="item"><input type="button" class='ui-corner-all' onclick="location.href='{{ view_url|escape }}'" value="Cancel"/></span>
+		</div>
+	</form>
+
+{% endblock %}
